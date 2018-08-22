@@ -1,0 +1,43 @@
+table.gridtable {
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px; #
+	background-color: #FFF; #
+	background: #EEF4F9;
+	border: 1; #
+	color: #003755;
+	border-collapse: collapse;
+	font: 14px "宋体";
+}
+
+table.gridtable tr {
+	cursor: pointer;
+}
+
+table.gridtable th {
+	background: #7CB8E2;
+	color: #fff;
+	padding: 6px 4px;
+	text-align: center;
+}
+
+table.gridtable td {
+	background: #FFFFFF none repeat-x scroll center left;
+	color: #000;
+	padding: 4px 2px;
+}
+
+table.gridtable a {
+	text-decoration: none;
+	height: 1em;
+}
+
+table.gridtable a:link, table.gridtable  a:visited {
+	color: #3366CC;
+}
+
+table.gridtable  a:hover {
+	color: #B50000;
+	text-decoration: underline;
+}
