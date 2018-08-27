@@ -58,11 +58,10 @@
     
 	<!-- 慢SQL记录 -->
     <bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
-        <!-- 慢sql时间设置,即执行时间大于200毫秒的都是慢sql -->
-        <property name="slowSqlMillis" value="200"/>
+        <!-- 慢sql时间设置,即执行时间大于300毫秒的都是慢sql -->
+        <property name="slowSqlMillis" value="300"/>
         <property name="logSlowSql" value="true"/>
     </bean>
-    
     <bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
         <property name="dataSourceLogEnabled" value="true" />
         <property name="statementExecutableSqlLogEnable" value="true" />
@@ -113,6 +112,24 @@
     <bean id="transactionManager"
         class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+	<!--配置 sqlSessionFactory Mybatis-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 数据库连接池 -->
+        <property name="dataSource" ref="dataSource" />
+        <!-- 加载mybatis配置文件 -->
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+    </bean>
+    <!-- 通过扫描器的方式自动加载mapper -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.study.mybatis.mapper" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFaction" />
+    </bean>
+    
+    <!-- 生成sqlsession mybatis -->
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
 
     <!-- 第一种方式: 注解方式配置事物 -->
